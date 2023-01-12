@@ -1,0 +1,246 @@
+        -:    0:Source:C:/Users/Ibai/CLionProjects/Practica7/main.c
+        -:    0:Graph:C:\Users\Ibai\CLionProjects\Practica7\cmake-build-debug-coverage\CMakeFiles\Practica7.dir\main.c.gcno
+        -:    0:Data:C:\Users\Ibai\CLionProjects\Practica7\cmake-build-debug-coverage\CMakeFiles\Practica7.dir\main.c.gcda
+        -:    0:Runs:1
+        -:    1:#include <stdio.h>
+        -:    2:#define maximo_chars 64
+        -:    3:
+        -:    4:
+        -:    5:// prototipos
+        -:    6:void binario_entera(int, char [maximo_chars]);
+        -:    7:// un int se convierte a binario (se almacena en el array)
+        -:    8:
+        -:    9:void binario_fraccionaria(float , char [maximo_chars]);
+        -:   10:// un float se convierte a binario (se almacena en el array)
+        -:   11:
+        -:   12:void resetear(char [maximo_chars]);  // se resetea el array
+        -:   13:
+        -:   14:void poner_posicion (char [maximo_chars],int , char );
+        -:   15:// se coloca un char en la posicion int del array
+        -:   16:
+        -:   17:int bits_blanco(char [maximo_chars]);
+        -:   18:// chars en blanco en el array
+        -:   19:
+        -:   20:void insertar_final(char [maximo_chars],char);
+        -:   21:// se inserta un char al final del array, desplazando el resto a la izquierda
+        -:   22:
+        -:   23:void prn_binario(char [maximo_chars]);
+        -:   24:// se printa el array con los char del numero binario
+        -:   25:
+        -:   26:void mover_izda(char [maximo_chars]);
+        -:   27:// mueve a la izda todos los bits del array
+        -:   28:
+        -:   29:void scan_real(float * );
+        -:   30:// scan del número real a convertir
+        -:   31:
+        -:   32:int posicion_punto_decimal (char [maximo_chars]);
+        -:   33:// posicion en el array de ‘.’
+        -:   34:
+        -:   35:void notacion_cientifica(char [maximo_chars], int * );
+        -:   36:// convierte el binario en notacion cientifica, transmitiendo el exponente
+        -:   37:
+        -:   38:void copiar_mantisa(char [maximo_chars],char [32]);
+        -:   39:// copia la mantisa a un array de 32 chars, en las últimos 23 posiciones del array
+        -:   40:
+        -:   41:void copiar_exponente(char [maximo_chars],char r[32]);
+        -:   42:// copia el exponente a un array de 32 chars, en las 8 siguientes posiciones a la posicion 0
+        -:   43:
+        -:   44:void colocar_signo(char ,char [32]);
+        -:   45:// coloca el signo en un array de 32 chars, en la posicion 0
+        -:   46:
+        -:   47:
+        -:   48:
+function main called 1 returned 100% blocks executed 100%
+        1:   49:int main() {
+        -:   50:    int a, exponente, l;
+        -:   51:    float n, b;
+        -:   52:    char binintfrac[maximo_chars], auxarr[32], aux;
+        1:   53:    scan_real(&n);
+        1:   53-block  0
+call    0 returned 1
+        1:   54:    resetear(binintfrac);
+call    0 returned 1
+        1:   55:    a = (int) n;
+        1:   56:    b = n - (int) n;
+        1:   57:    printf("El numero real en base decimal es: %d\n", a);
+call    0 returned 1
+        1:   58:    printf("El numero real convertido a binario es: ");
+call    0 returned 1
+        1:   59:    binario_entera(a, binintfrac);
+call    0 returned 1
+        1:   60:    insertar_final(binintfrac, '.');
+call    0 returned 1
+        1:   61:    binario_fraccionaria(b, binintfrac);
+call    0 returned 1
+        1:   62:    prn_binario(binintfrac);
+call    0 returned 1
+        1:   63:    notacion_cientifica(binintfrac,&exponente);
+call    0 returned 1
+        1:   64:    printf("\nNumero binario en notacion cientifica: ");
+call    0 returned 1
+        1:   65:    prn_binario(binintfrac);
+call    0 returned 1
+        -:   66:}
+function scan_real called 1 returned 100% blocks executed 100%
+        1:   67:void scan_real(float *n)
+        -:   68:{
+        1:   69:  printf("Introduzca un numero real:");
+        1:   69-block  0
+call    0 returned 1
+        1:   70:  scanf("%f",n);
+call    0 returned 1
+        1:   71:}
+function binario_entera called 1 returned 100% blocks executed 100%
+        1:   72:void binario_entera(int a, char array[maximo_chars])
+        -:   73:{
+        -:   74:    int j;
+        9:   75:    for(j= maximo_chars-1 ; a; a/=2, j--)
+        1:   75-block  0
+        9:   75-block  1
+branch  0 taken 8
+branch  1 taken 1 (fallthrough)
+        8:   76:        array[j]=a%2?'1':'0';
+        8:   76-block  0
+branch  0 taken 5 (fallthrough)
+branch  1 taken 3
+        5:   76-block  1
+        3:   76-block  2
+        8:   76-block  3
+        1:   77:}
+        -:   78:
+function binario_fraccionaria called 1 returned 100% blocks executed 100%
+        1:   79:void binario_fraccionaria(float b, char array[maximo_chars])
+        -:   80:{
+        -:   81:    int k;
+        3:   82:    for(k = 0; k < 23 && b>0; k++)
+        1:   82-block  0
+        3:   82-block  1
+branch  0 taken 3 (fallthrough)
+branch  1 taken 0
+        3:   82-block  2
+branch  2 taken 2
+branch  3 taken 1 (fallthrough)
+        -:   83:    {
+        2:   84:        b *= 2;
+        2:   85:        insertar_final(array,(int)b>=1?'1':'0');
+        2:   85-block  0
+branch  0 taken 1 (fallthrough)
+branch  1 taken 1
+        1:   85-block  1
+        1:   85-block  2
+        2:   85-block  3
+call    2 returned 2
+        2:   86:        b = b -(int)b;
+        -:   87:    }
+        1:   88:}
+        -:   89:
+function resetear called 1 returned 100% blocks executed 100%
+        1:   90:void resetear( char array[maximo_chars])
+        -:   91:{
+        -:   92:    char posres;
+       65:   93:    for (posres = 0; posres < maximo_chars; posres++)
+        1:   93-block  0
+       65:   93-block  1
+branch  0 taken 64
+branch  1 taken 1 (fallthrough)
+       64:   94:        array[posres]=' ';
+       64:   94-block  0
+        1:   95:}
+        -:   96:
+function prn_binario called 2 returned 100% blocks executed 100%
+        2:   97:void prn_binario(char array[maximo_chars])
+        -:   98:{
+        -:   99:    int i;
+       26:  100:    for (i = bits_blanco(array); i < maximo_chars; i++)
+        2:  100-block  0
+call    0 returned 2
+       26:  100-block  1
+branch  1 taken 24
+branch  2 taken 2 (fallthrough)
+       24:  101:            printf("%c",array[i]);
+       24:  101-block  0
+call    0 returned 24
+        2:  102:}
+        -:  103:
+function bits_blanco called 2 returned 100% blocks executed 100%
+        2:  104:int bits_blanco(char array[maximo_chars])
+        -:  105:{
+        2:  106:    int i, contador = 0;
+      130:  107:    for(i = 0; i < maximo_chars; i++)
+        2:  107-block  0
+      128:  107-block  1
+      130:  107-block  2
+branch  0 taken 128
+branch  1 taken 2 (fallthrough)
+        -:  108:    {
+      128:  109:        if(array[i] == ' ')
+      128:  109-block  0
+branch  0 taken 104 (fallthrough)
+branch  1 taken 24
+      104:  110:            contador++;
+      104:  110-block  0
+        -:  111:    }
+        2:  112:    return contador;
+        2:  112-block  0
+        -:  113:}
+        -:  114:
+function poner_posicion called 0 returned 0% blocks executed 0%
+    #####:  115:void poner_posicion( char array[maximo_chars],int a, char c)
+        -:  116:{
+    #####:  117:  array[a] = c;
+    #####:  118:}
+        -:  119:
+function insertar_final called 3 returned 100% blocks executed 100%
+        3:  120:void insertar_final(char array[maximo_chars], char c)
+        -:  121:{
+        3:  122:  mover_izda(array);
+        3:  122-block  0
+call    0 returned 3
+        3:  123:  array[maximo_chars-1] = c;
+        3:  124:}
+        -:  125:
+function notacion_cientifica called 1 returned 100% blocks executed 67%
+        1:  126:void notacion_cientifica(char array[maximo_chars], int *e)
+        -:  127:{
+        -:  128:  int i;
+       1*:  129:  for(i = 0; array[i] == '0' ; i++)
+        1:  129-block  0
+        1:  129-block  1
+branch  0 taken 0
+branch  1 taken 1 (fallthrough)
+    #####:  130:      mover_izda(array);
+    %%%%%:  130-block  0
+call    0 never executed
+        1:  131:  array[3] = '.';
+        1:  132:  *e = posicion_punto_decimal(array)-1;
+        1:  132-block  0
+call    0 returned 1
+        -:  133:
+        1:  134:}
+function posicion_punto_decimal called 1 returned 100% blocks executed 83%
+        1:  135:int posicion_punto_decimal(char array[maximo_chars])
+        -:  136:{
+        -:  137:  int i;
+        1:  138:  for(i = 0; i < maximo_chars; i++)
+        1:  138-block  0
+        1:  138-block  1
+branch  0 taken 1
+branch  1 taken 0 (fallthrough)
+        1:  139:    if(array[i] = '.')
+        1:  139-block  0
+        1:  140:      return i;
+        1:  140-block  0
+    #####:  141:}
+    %%%%%:  141-block  0
+function mover_izda called 3 returned 100% blocks executed 100%
+        3:  142:void mover_izda(char array[maximo_chars])
+        -:  143:{
+        -:  144:  int i;
+      195:  145:  for(i =0 ; i < maximo_chars; i++)
+        3:  145-block  0
+      195:  145-block  1
+branch  0 taken 192
+branch  1 taken 3 (fallthrough)
+      192:  146:    array[i] = array[i+1];
+      192:  146-block  0
+        3:  147:}

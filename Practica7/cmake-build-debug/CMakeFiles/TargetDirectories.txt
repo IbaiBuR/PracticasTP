@@ -1,0 +1,3 @@
+C:/Users/Ibai/CLionProjects/Practica7/cmake-build-debug/CMakeFiles/Practica7.dir
+C:/Users/Ibai/CLionProjects/Practica7/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Ibai/CLionProjects/Practica7/cmake-build-debug/CMakeFiles/rebuild_cache.dir
